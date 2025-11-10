@@ -131,7 +131,7 @@ db.serialize(() => {
     FOREIGN KEY(member_id) REFERENCES members(id)
   )`);
 
-  // Alter por si ya existía la tabla
+  // Por compatibilidad con bases viejas (ignora errores si ya existen)
   db.run(`ALTER TABLE members ADD COLUMN cedula TEXT`, () => {});
   db.run(`ALTER TABLE members ADD COLUMN avatar TEXT`, () => {});
   db.run(`ALTER TABLE members ADD COLUMN fav_machines TEXT`, () => {});
@@ -198,7 +198,7 @@ app.post('/api/login', async (req, res) => {
       return res.json({ token, role: 'admin' });
     }
 
-    // Member por cédula
+    // Miembro por cédula
     user = await getAsync(
       'SELECT * FROM members WHERE cedula = ? AND activo = 1',
       [emailOrUsername]
@@ -459,7 +459,7 @@ app.get(
   }
 );
 
-// ---------- MEMBER: ACTUALIZAR PERFIL (FOTO + PREFERENCIAS) ----------
+// ---------- MEMBER: ACTUALIZAR PERFIL ----------
 app.post(
   '/api/member/profile',
   authMiddleware('member'),
@@ -475,7 +475,6 @@ app.post(
       }
 
       const { fav_machines, goals } = req.body;
-
       const newAvatar = req.file
         ? `/avatars/${req.file.filename}`
         : member.avatar;
@@ -632,7 +631,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start
-app.listen(PORT, () => {
+// Start (Render usa process.env.PORT)
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
