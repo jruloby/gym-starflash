@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Panel - Gym</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="member-body">
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <img src="https://via.placeholder.com/40" alt="Logo Gym" class="logo">
+        <h1>Mi Panel</h1>
+      </div>
+      <div class="header-actions">
+        <button id="member-logout-btn">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="member-main">
+    <!-- Perfil + Suscripción -->
+    <section class="member-card">
+      <div class="member-header">
+        <div class="member-avatar-wrapper">
+          <img id="member-avatar" src="" alt="Avatar" class="member-avatar">
+          <button type="button" id="change-avatar-btn" class="avatar-btn">
+            Cambiar foto
+          </button>
+          <input type="file" id="avatar-input" accept="image/*" hidden>
+        </div>
+        <div class="member-basic">
+          <h2>Mi suscripción</h2>
+          <p class="member-name" id="member-name"></p>
+          <p><strong>Plan:</strong> <span id="member-plan"></span></p>
+          <p><strong>Vence el:</strong> <span id="member-vencimiento"></span></p>
+          <div class="days-left-container">
+            <span id="member-days-left" class="days-left-pill">-- días restantes</span>
+          </div>
+          <p id="member-status-msg" class="member-status-msg"></p>
+        </div>
+      </div>
+
+      <div class="member-preferences">
+        <h3>Mi perfil</h3>
+        <div class="pref-grid">
+          <div class="pref-group">
+            <label for="fav-machines">Máquinas / ejercicios favoritos</label>
+            <textarea id="fav-machines" placeholder="Ej: Press banca, jalón al pecho, sentadilla hack..."></textarea>
+          </div>
+          <div class="pref-group">
+            <label for="goals">Objetivos</label>
+            <textarea id="goals" placeholder="Ej: Ganar masa muscular, mejorar resistencia, perder grasa..."></textarea>
+          </div>
+        </div>
+        <button type="button" id="save-profile-btn">Guardar perfil</button>
+        <p id="profile-msg" class="routine-msg"></p>
+      </div>
+    </section>
+
+    <!-- Rutina semanal -->
+    <section class="member-card">
+      <h2>Mi rutina semanal</h2>
+      <p class="muted">
+        Definí qué hacés cada día. Esto se guarda como tu plantilla y se usa para mostrar tu semana.
+      </p>
+
+      <form id="weekly-routine-form" class="weekly-grid">
+        <div class="form-group">
+          <label for="rutina-dom">Domingo</label>
+          <textarea id="rutina-dom" placeholder="Descanso, cardio suave, etc."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-lun">Lunes</label>
+          <textarea id="rutina-lun" placeholder="Pecho, tríceps..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-mar">Martes</label>
+          <textarea id="rutina-mar" placeholder="Espalda, bíceps..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-mie">Miércoles</label>
+          <textarea id="rutina-mie" placeholder="Piernas, glúteos..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-jue">Jueves</label>
+          <textarea id="rutina-jue" placeholder="Hombros, core..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-vie">Viernes</label>
+          <textarea id="rutina-vie" placeholder="Full body, etc."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rutina-sab">Sábado</label>
+          <textarea id="rutina-sab" placeholder="Funcional, cardio, etc."></textarea>
+        </div>
+
+        <div class="full">
+          <button type="submit">Guardar rutina semanal</button>
+          <p id="routine-msg" class="routine-msg"></p>
+        </div>
+      </form>
+
+      <div id="workouts-list" class="workouts-list">
+        <p class="muted">Así se ve tu rutina para los próximos 7 días:</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/member.js"></script>
+</body>
+</html>

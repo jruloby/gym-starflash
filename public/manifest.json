@@ -1,0 +1,8 @@
+{
+  "name": "Gym Web App",
+  "short_name": "Gym",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2b7cff"
+}

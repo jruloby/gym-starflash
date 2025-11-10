@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Admin - Gym</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <img src="https://via.placeholder.com/50" alt="Logo Gym" class="logo" />
+        <h1>Gym Admin Panel</h1>
+      </div>
+      <div class="header-actions">
+        <button id="logout-btn">Cerrar sesión</button>
+        <button id="open-modal-btn">Crear miembro</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <!-- Lista de miembros -->
+    <div class="left-panel">
+      <h2>Lista de miembros</h2>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar por nombre, cédula o email"
+      />
+      <table id="membersTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Plan</th>
+            <th>Vencimiento</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Perfil -->
+    <div class="right-panel">
+      <div id="empty-profile" class="profile-empty">
+        <p>Seleccioná un miembro de la lista para ver su perfil.</p>
+      </div>
+
+      <div id="member-profile" class="profile-card" style="display: none;">
+        <h2>Perfil del miembro</h2>
+
+        <div class="avatar-container">
+          <img id="profile-avatar" src="" alt="Avatar" class="avatar" />
+        </div>
+
+        <p><strong>ID:</strong> <span id="profile-id"></span></p>
+        <p><strong>Cédula:</strong> <span id="profile-cedula"></span></p>
+        <p><strong>Nombre:</strong> <span id="profile-nombre"></span></p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+        <p><strong>Teléfono:</strong> <span id="profile-telefono"></span></p>
+        <p><strong>Plan actual:</strong> <span id="profile-plan"></span></p>
+        <p><strong>Fecha de inicio:</strong> <span id="profile-fecha_inicio"></span></p>
+        <p><strong>Vencimiento:</strong> <span id="profile-fecha_vencimiento"></span></p>
+
+        <div class="renew-container">
+          <label for="renew-plan">Renovar plan</label>
+          <select id="renew-plan">
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="dia">Día</option>
+            <option value="semana">Semana</option>
+            <option value="mes">Mes</option>
+          </select>
+          <button id="renew-btn">Renovar</button>
+        </div>
+
+        <button id="close-profile-btn" class="btn-outline">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal crear miembro -->
+  <div id="createModal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal-btn" class="close">&times;</span>
+      <h2>Crear nuevo miembro</h2>
+
+      <form id="create-member-form" class="form-grid">
+        <div class="form-group">
+          <label for="cedula">Cédula</label>
+          <input type="text" id="cedula" required />
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email (opcional)</label>
+          <input type="email" id="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" required />
+        </div>
+
+        <div class="form-group">
+          <label for="plan">Plan</label>
+          <select id="plan" required>
+            <option value="" disabled selected>Seleccionar plan</option>
+            <option value="dia">Día</option>
+            <option value="semana">Semana</option>
+            <option value="mes">Mes</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label for="avatar">Avatar (opcional)</label>
+          <input type="file" id="avatar" accept="image/*" />
+        </div>
+
+        <div class="full">
+          <button type="submit">Crear miembro</button>
+          <p id="error-msg" class="error-msg"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
